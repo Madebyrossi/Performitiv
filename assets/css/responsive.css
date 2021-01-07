@@ -1,0 +1,295 @@
+/****** Responsive CSS ******/
+
+@media screen and (max-width: 1425px) {
+	.about .frame {
+		max-width: 90%;
+		margin: 0 auto;
+	}
+	.about .frame div:first-of-type {
+		width: 16%;
+		margin-right: 3%;
+	}
+	.about .frame div:last-of-type {
+		width: 81%;
+	}
+}
+
+@media screen and (max-width: 1400px) {
+	.demo .content {
+		padding-right: 40px;
+		padding-left: 40px;
+	}
+	.pricing.walkthrough article .description .cell div {
+		margin-left: 20%;
+	}
+}
+
+@media screen and (max-width: 1215px) {
+	#hero {
+		background-image: url('https://performitiv.com/wp-content/themes/custom/assets/images/img-home3.jpg') !important;
+	}
+	.about .frame div:first-of-type {
+		display: none;
+	}
+	.about .frame div:last-of-type {
+		width: 100%;
+		margin: 0 auto;
+		float: none;
+	}
+	.features {
+		padding: 30px 0 40px 60px;
+	}
+	.pricing.walkthrough article .description .cell div {
+		margin-left: 10%;
+	}
+	.product .hero .gradientbg {
+		background: rgba(0, 0, 0, 0.55) !important;
+	}
+	.product .hero .text {
+	    width: 90% !important;
+	    margin-left: 0 !important;
+	}
+}
+
+@media screen and (max-width: 1155px) {
+	.pricebox-desktop .price span {
+		display: none !important;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.modal-dialog {
+		min-width: 100% !important;
+	}
+	.content {
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+	#menu,
+	.menu-secondary {
+		display: none !important;
+	}
+	#menu .mobile-show,
+	.slicknav_menu {
+		display: block !important;
+	}
+	.features {
+		padding: 0 20px 10px;
+	}
+	#hero h1 {
+		font-size: 56px;
+		line-height: 70px;
+	}
+	#hero p {
+		font-size: 24px;
+		line-height: 36px;
+		width: 80%;
+	}
+	.about .frame div:last-of-type {
+		width: 74%;
+		margin: 0 auto;
+		float: none;
+		text-align: center;
+	}
+	.about .frame div:last-of-type ul {
+		margin: 0 auto;
+	}
+	.about .frame div:last-of-type li {
+		text-align: left;
+	}
+	.demo .content {
+		padding-right: 0;
+		padding-left: 0;
+	}
+	.demo .inner article {
+		margin-left: 4%;
+		width: 90%;
+	}
+	.pricing.intro section {
+		text-align: center;
+	}
+	.pricing.intro .content {
+		max-width: 480px;
+	}
+	.pricing.intro .content img {
+		padding-bottom: 20px;
+	}
+	.pricebox-desktop .price h4 {
+		font-size: 60px !important;
+	}
+	.pricebox-desktop.numbers div:first-of-type {
+		display: none;
+	}
+	.pricing.intro h3 {
+		font-size: 19px !important;
+		line-height: 29px !important;
+	}
+	.pricing.walkthrough article,
+	.pricing.walkthrough article .description {
+		height: 300px;
+	}
+	.pricing.walkthrough article .description .cell div {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+	.pricing.walkthrough article:last-of-type .description .cell div {
+		margin: 0 auto !important;
+	}
+	.pricing.walkthrough article .image {
+		display: none;
+	}
+	.resources.description img {
+		padding-bottom: 20px;
+	}
+	.social-icons,
+	.menu-links,
+	.desktop-logo {
+		display: none;
+	}
+	.mobile-logo {
+		display: block !important;
+		padding-top: 13px;
+	}
+	header.page .logo-bar {
+	    padding: 0 !important;
+	}
+	header.page img {
+    	max-width: 230px !important;
+	}
+	.slicknav_item .dropdown-toggle {
+		display: inline;
+	}
+	.slicknav_item .slicknav_arrow {
+		float: left;
+		font-size: 13px;
+		padding-right: 6px;
+	}
+	footer section:nth-of-type(1),
+	footer section:nth-of-type(2) {
+		margin-bottom: 20px;
+	}
+	.features {
+		padding-left: 0 !important;
+	}
+	.latest-resources .entry {
+		margin-bottom: 30px;
+	}
+	.latest-resources .entry .col-md-1 {
+		display: none;
+	}
+	.latest-resources .entry .col-md-8 {
+		margin-bottom: 15px;
+	}
+	.product .hero.mobile-styles .gradientbg {
+		background: rgba(238, 238, 238, 0.9) !important;
+	}
+	.product .hero.mobile-styles {
+	    min-height: auto !important;
+	}
+	.product .hero.mobile-styles .text {
+	    height: auto !important;
+	    margin-top: 100px !important;
+	    margin-bottom: 40px !important;
+	}
+	.product .hero.mobile-styles .text h2 {
+		color: #444 !important;
+		text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.15) !important;
+	}
+	.product .hero.mobile-styles .text p {
+		color: #444 !important;
+		font-size: 18px !important;
+		line-height: 24px !important;
+		text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.15) !important;
+	}
+}
+
+@media screen and (max-width: 880px) {
+	.infographic {
+		display: none !important;
+	}
+	.info-tabs .tab-pane {
+		display: block !important;
+		margin-bottom: 40px !important;
+	}
+	.info-tabs section:nth-of-type(2) {
+		text-align: left !important;
+	}
+	.info-tabs h1 {
+		font-size: 30px;
+		line-height: 36px;
+		margin-bottom: 10px;
+	}
+}
+
+@media screen and (max-width: 790px) {
+	#hero h1 {
+		font-size: 36px;
+		line-height: 50px;
+	}
+	#hero p {
+		font-size: 18px;
+		line-height: 30px;
+	}
+	#hero span.mobile {
+		display: block !important;
+		width: 100%;
+		text-align: center;
+	}
+	.slidingVertical {
+		display: none !important;
+	}
+	.about .frame div:last-of-type {
+		width: 88%;
+	}
+	.features section {
+		float: none;
+		display: block;
+		width: 100%;
+		height: auto;
+		min-height: auto;
+		text-align: center;
+	}
+	.features section:first-of-type {
+		background-position: center center;
+		min-height: 600px;
+	}
+	.features article {
+		max-width: 480px;
+		margin: 0 auto 60px;
+		padding: 0;
+	}
+	.pricebox-desktop {
+		display: none !important;
+	}
+	.pricebox-mobile {
+		display: block !important;
+	}
+}
+
+@media screen and (max-width: 540px) {
+	header.home img {
+		display: none;
+	}
+	header.page img {
+		max-width: 180px;
+		padding: 10px 0;
+	}
+	.frame div:last-of-type {
+		width: 80% !important;
+	}
+	.features section:first-of-type {
+		min-height: 440px;
+	}
+	.pricebox {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.pricing.walkthrough article .description {
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+	.resources.details h1 {
+		text-align: center;
+	}
+}
