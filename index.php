@@ -14,18 +14,14 @@
 					} else {
 						$type = 'post';
 					}
-				
-					$paged = ( get_query_var('page') ) ? get_query_var('page') : 1;
-					$query_args = array(
-						'post_type'       => $type,
-						'posts_per_page'  => '20'
-					);
-					$the_query = new WP_Query( $query_args );
 
-					if ( $the_query->have_posts() ) :
-					while ( $the_query->have_posts() ) :
-					$the_query->the_post();
+					$the_query = new WP_Query( array(
+						'post_type' => $type,
+						'posts_per_page'=> 20,                                  
+						'paged' => get_query_var('paged') ? get_query_var('paged') : 1) 
+					); 
 				?>
+				<?php while ($the_query -> have_posts()) : $the_query -> the_post(); ?>
 
 					<p class="date">
 						<?php the_date('F j, Y'); ?>
@@ -41,18 +37,18 @@
 						<?php the_excerpt(); ?>
 						<a href="<?php the_permalink(); ?>" class="btn btn-sm">Read More &raquo;</a>
 					</div>
-					
-					<?php
-						endwhile;
 
-						the_posts_pagination( array(
-							'prev_text'  => __( 'Newer' ),
-							'next_text'  => __( 'Older' )
-						) );
-
-						endif;
-						wp_reset_query();
-					?>
+				<?php
+					endwhile;
+					$big = 999999999;
+					echo paginate_links( array(
+						'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
+						'format' => '?paged=%#%',
+						'current' => max( 1, get_query_var('paged') ),
+						'total' => $the_query->max_num_pages
+					) );
+					wp_reset_postdata(); 
+				?>
 			</div>
 			<!--// END BLOG POST //-->
 		

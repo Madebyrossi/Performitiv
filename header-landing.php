@@ -40,12 +40,12 @@
 				<section class="col-md-6">
 					<div class="desktop-logo">
 						<a href="https://www.performitiv.com">
-							<img src="/wp-content/themes/custom/assets/images/logo-newer.jpg" class="page-logo" />
+							<img src="/client/performitiv/wp-content/themes/custom/assets/images/logo-newer.jpg" class="page-logo" />
 						</a>
 					</div>
 					<div class="mobile-logo">
 						<a href="https://www.performitiv.com">
-							<img src="/wp-content/themes/custom/assets/images/logo-newer.jpg" />
+							<img src="/client/performitiv/wp-content/themes/custom/assets/images/logo-newer.jpg" />
 						</a>
 					</div>
 				</section>

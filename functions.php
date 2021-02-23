@@ -40,6 +40,10 @@ function liliripe_styles() {
 	wp_register_style('icons', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', array(), '');
 	wp_enqueue_style('icons');
 	
+	// Lightslider CSS
+	wp_register_style('lightslider-css', get_template_directory_uri() . '/assets/css/lightslider.min.css', array(), '');
+	wp_enqueue_style('lightslider-css');
+	
 	// Main Stylesheet
 	wp_register_style('stylesheet', get_stylesheet_uri(), array(), '');
 	wp_enqueue_style('stylesheet');
@@ -69,6 +73,10 @@ function liliripe_scripts() {
 	// Slicknav JS
 	wp_register_script('slicknav-js', get_template_directory_uri() . '/assets/js/jquery.slicknav.js', array(), '', true);
 	wp_enqueue_script('slicknav-js');
+	
+	// Lightslider JS
+	wp_register_script('lightslider-js', get_template_directory_uri() . '/assets/js/lightslider.min.js', array(), '', true);
+	wp_enqueue_script('lightslider-js');
 	
 	// Theme JS
 	wp_register_script('theme-js', get_template_directory_uri() . '/assets/js/theme.js', array(), '', true);
@@ -101,6 +109,7 @@ function register_my_menus() {
     array(
       'left'      => __('Left Menu'),
       'center'    => __('Center Menu'),
+      'center-alt'    => __('Center Menu (Alternate)'),
       'right'     => __('Right Menu'),
       'footer1'   => __('Footer Left Menu'),
       'footer2'   => __('Footer Right Menu'),
@@ -375,7 +384,171 @@ add_action( 'init', 'custom_post_events' );
 
 /* ADDS SUPPORT FOR CUSTOM SHORTCODES */
 
+/* Featured Content */
 function featuredContent_shortcode() {
-     return 'shortcode test';
+	$loop = new WP_Query(array(
+		'post_type'       => 'resources',
+		'posts_per_page'  => '4'
+	));
+	if ($loop->have_posts()) :
+	while ($loop->have_posts()) : $loop->the_post();
+	$form = get_post_meta(get_the_ID(), 'meta-text4', true);
+?>
+	<div class="excerpt resource-excerpt">
+		<h4><?php the_title(); ?></h4>
+		<p><?php the_excerpt(); ?></p>
+		<div class="vc_btn3-container vc_btn3-left">
+			<a 
+				data-toggle="modal" data-target="#modal<?php echo get_the_ID(); ?>"
+				class="vc_general vc_btn3 vc_btn3-size-md vc_btn3-style-flat vc_btn3-color-info"
+			>
+				Request Download
+			</a>
+		</div>
+	</div>
+<?php 
+	include 'templates/modals/resources.php';
+	endwhile;
+	endif;
+	wp_reset_postdata();
+?>
+	<style type="text/css">
+		.modal-backdrop {
+			display: none !important;
+		}
+	</style>
+<?php
 }
 add_shortcode('featuredContent', 'featuredContent_shortcode');
+
+/* Featured Events */
+function featuredEvents_shortcode() {
+	$loop = new WP_Query(array(
+		'post_type'       => 'events',
+		'posts_per_page'  => '5'
+	));
+	if ($loop->have_posts()) :
+	while ($loop->have_posts()) : $loop->the_post();
+	$date      = get_post_meta(get_the_ID(), 'meta-text1', true);
+	$location  = get_post_meta(get_the_ID(), 'meta-text2', true);
+	$url       = get_post_meta(get_the_ID(), 'meta-text3', true);
+?>
+	<div class="excerpt resource-excerpt">
+		<p><?php echo $date; ?></p>
+		<h4><?php the_title(); ?></h4>
+		<p><?php echo $location; ?></p>
+		<div class="vc_btn3-container vc_btn3-left">
+			<a 
+				href="<?php echo $url; ?>"
+				target="_blank"
+				class="vc_general vc_btn3 vc_btn3-size-md vc_btn3-style-flat vc_btn3-color-info"
+			>
+				Event Details  ➝
+			</a>
+		</div>
+	</div>
+<?php 
+	endwhile;
+	endif;
+	wp_reset_postdata();
+?>
+<?php
+}
+add_shortcode('featuredEvents', 'featuredEvents_shortcode');
+
+/* Featured News */
+function featuredNews_shortcode() {
+	$loop = new WP_Query(array(
+		'post_type'       => 'news',
+		'posts_per_page'  => '3'
+	));
+	if ($loop->have_posts()) :
+	while ($loop->have_posts()) : $loop->the_post();
+?>
+	<div class="excerpt">
+		<p><?php the_date('F j, Y'); ?></p>
+		<p><?php the_title(); ?></p>
+		<a class="read-more" href="<?php the_permalink(); ?>">Read More &#10141;</a>
+	</div>
+<?php 
+	endwhile;
+	endif;
+	wp_reset_postdata();
+?>
+<?php
+}
+add_shortcode('featuredNews', 'featuredNews_shortcode');
+
+/* Featured Posts */
+function featuredPosts_shortcode() {
+	$loop = new WP_Query(array(
+		'post_type'       => 'post',
+		'posts_per_page'  => '3'
+	));
+	if ($loop->have_posts()) :
+	while ($loop->have_posts()) : $loop->the_post();
+?>
+	<div class="excerpt">
+		<p><?php the_date('F j, Y'); ?></p>
+		<p><?php the_title(); ?></p>
+		<a class="read-more" href="<?php the_permalink(); ?>">Read More &#10141;</a>
+	</div>
+<?php 
+	endwhile;
+	endif;
+	wp_reset_postdata();
+?>
+<?php
+}
+add_shortcode('featuredPosts', 'featuredPosts_shortcode');
+
+
+/* ADDS SUPPORT FOR CUSTOM META BOXES */
+
+/* Events & Contact Setup */
+function liliripe_custom_meta2() {
+    add_meta_box( 'liliripe_meta1', __( 'Event Info', 'liliripe-textdomain1' ), 'liliripe_meta_callback1', 'events', 'side' );
+    add_meta_box( 'liliripe_meta2', __( 'Contact Form', 'liliripe-textdomain2' ), 'liliripe_meta_callback2', 'resources', 'side' );
+}
+add_action( 'add_meta_boxes', 'liliripe_custom_meta2' );
+
+/* Events Code */
+function liliripe_meta_callback1( $post ) {
+	wp_nonce_field( basename( __FILE__ ), 'prfx_nonce' );
+	$liliripe_stored_meta = get_post_meta( $post->ID ); 
+?>
+    <p><?php _e( 'Event Date', 'liliripe-textdomain1' )?></p>
+    <input type="text" name="meta-text1" id="meta-text1" value="<?php if(isset($liliripe_stored_meta['meta-text1'])) echo $liliripe_stored_meta['meta-text1'][0]; ?>" />
+    <p style="margin-top: 20px;"><?php _e( 'Event Location', 'liliripe-textdomain1' )?></p>
+    <input type="text" name="meta-text2" id="meta-text2" value="<?php if(isset($liliripe_stored_meta['meta-text2'])) echo $liliripe_stored_meta['meta-text2'][0]; ?>" />
+    <p style="margin-top: 20px;"><?php _e( 'Event URL', 'liliripe-textdomain1' )?></p>
+    <input type="text" name="meta-text3" id="meta-text3" value="<?php if(isset($liliripe_stored_meta['meta-text3'])) echo $liliripe_stored_meta['meta-text3'][0]; ?>" />
+<?php }
+
+/* Contact Code */
+function liliripe_meta_callback2( $post ) {
+	wp_nonce_field( basename( __FILE__ ), 'prfx_nonce' );
+	$liliripe_stored_meta = get_post_meta( $post->ID ); 
+?>
+    <p><?php _e( 'Paste your contact form code here', 'liliripe-textdomain2' )?></p>
+    <input type="text" name="meta-text4" id="meta-text4" value='<?php if(isset($liliripe_stored_meta['meta-text4'])) echo $liliripe_stored_meta['meta-text4'][0]; ?>' />
+<?php }
+
+/* Save Meta Content */
+function liliripe_meta_save( $post_id ) {
+    $is_autosave = wp_is_post_autosave( $post_id );
+    $is_revision = wp_is_post_revision( $post_id );
+    $is_valid_nonce = ( isset( $_POST[ 'prfx_nonce' ] ) && wp_verify_nonce( $_POST[ 'prfx_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+    if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
+        return;
+    }
+    /* Event Date */
+    if( isset( $_POST[ 'meta-text1' ] ) ) {
+        update_post_meta( $post_id, 'meta-text1', sanitize_text_field( $_POST[ 'meta-text1' ] ) );
+    }
+    /* Contact Form */
+    if( isset( $_POST[ 'meta-text4' ] ) ) {
+        update_post_meta( $post_id, 'meta-text4', sanitize_text_field( $_POST[ 'meta-text4' ] ) );
+    }
+}
+add_action( 'save_post', 'liliripe_meta_save' );

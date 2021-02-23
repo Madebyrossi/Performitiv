@@ -1,0 +1,5 @@
+2- Create new templates:
+    1- Micro-site: similar to home page, with 3 nav items (Home, Resources, Agenda), editable text banner, body with text field & form link, existing footer
+    2- Webpage: same layout as Model page, but without Request a Meeting form
+
+4- "View older posts" on blog doesn't work

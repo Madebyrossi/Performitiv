@@ -1,4 +1,4 @@
-<div id="modal<?php echo $post->ID; ?>" class="modal fade" role="dialog" style="z-index: 9999; margin-top: 120px;">
+<div id="modal<?php echo get_the_ID(); ?>" class="modal fade" role="dialog" style="z-index: 9999;">
 	<div class="modal-dialog">
 		<div class="modal-content">
 		
